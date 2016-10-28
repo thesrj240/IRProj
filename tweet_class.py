@@ -20,6 +20,8 @@ class Tweet:
 		words = tweet.split(' ')
 		for word in words:
 			if len(word)>1 and word[0]=='#':
-				hashtags.append(self.truncateHashtag(word[1:]))
+				hashtag = self.truncateHashtag(word[1:])
+				if(len(hashtag)>0): #To void avoids hashtags like ''
+					hashtags.append(hashtag)
 		
-		return sorted(hashtags)
+		return list(set(sorted(hashtags))) #this is to remove duplicates and sort the hashtags
