@@ -1,3 +1,4 @@
+import sets
 class Tweet:
 	def __init__(self,tweet):
 		self.text = tweet
@@ -24,4 +25,14 @@ class Tweet:
 				if(len(hashtag)>0): #To void avoids hashtags like ''
 					hashtags.append(hashtag)
 		
-		return list(set(sorted(hashtags))) #this is to remove duplicates and sort the hashtags
+		return list(set(hashtags)) #this is to remove duplicates and sort the hashtags
+	def createBagOfWords(self):
+		keywords = self.text.split(' ')
+		for keyword in keywords:
+			if keyword.startswith('https://'):
+				keywords.remove(keyword)
+		self.bagOfWords = sets.Set(keywords)
+
+
+
+

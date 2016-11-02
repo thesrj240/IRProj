@@ -1,7 +1,7 @@
 import tweet_class as tc 
 import pickle
 
-f = open('Output.txt', 'r')
+f = open('twist.txt', 'r')
 tweets_string = f.read()
 tweets = tweets_string.split("}\n{")
 tweet_list = []
