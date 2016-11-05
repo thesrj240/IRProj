@@ -56,7 +56,7 @@ def duplicate_remove(tweet_list,freq_table_hashtag,tol):
 	#return tweet_list
 
 def co_hashtags(tweet_list,freq_table_hashtag):
-	min_count_hash = 5
+	min_count_hash = 20
 	vocab = []
 
 	unsorted_dict = dict.fromkeys([])
@@ -78,20 +78,5 @@ def co_hashtags(tweet_list,freq_table_hashtag):
 						unsorted_dict[hashtag][hashtag2]+=1
 					else:
 						unsorted_dict[hashtag][hashtag2]=1
-
-	for hashtag1 in vocab:
-		flag = False
-		for hashtag2 in vocab:
-			if unsorted_dict[hashtag1].has_key(hashtag2) and unsorted_dict[hashtag1][hashtag2]>=8:
-				flag = True
-				break
-			
-		if not flag:
-			print hashtag1
-			del unsorted_dict[hashtag1]
-			vocab.remove(hashtag1)
-			for hashtag2 in vocab:
-				if unsorted_dict[hashtag2].has_key(hashtag1):
-					del unsorted_dict[hashtag2][hashtag1]
 
 	return [vocab,unsorted_dict]

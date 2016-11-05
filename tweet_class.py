@@ -13,7 +13,7 @@ class Tweet:
 			else:
 				break
 				
-		return hashtag2.lower()
+		return hashtag2.lower()	#comments are important
 
 
 	def extractHashtag(self,tweet):
