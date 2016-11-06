@@ -2,6 +2,7 @@ import tweet_class as tc
 import hashlib
 import pickle
 import sets
+import re
 
 def jaccard(set1,set2):
 	return float(len(set1 & set2))/float(len(set1 | set2))
@@ -95,3 +96,25 @@ def co_hashtags(tweet_list,freq_table_hashtag):
 					del unsorted_dict[hashtag2][hashtag1]
 
 	return [vocab,unsorted_dict]
+
+
+
+def tokenizer_of_tweets(tweet_text):
+	tweet_text = tweet_text.replace('\n',' ') 
+	temp_list = tweet_text.split(' ')
+	useful_list = []
+	for ele in temp_list:
+	    
+	    if len(ele)<2 or ele.startswith('https://') or ele.startswith('@') or ele.startswith('#'):
+	        continue
+	    useful_list.append(ele)
+	    
+	useful_text = " ".join(useful_list)
+	tokens = re.split('[,.;?! ]',useful_text)
+	real_tokens = []
+	for token in tokens:
+	    if len(token)>0:
+	        real_tokens.append(token)
+	return real_tokens
+
+
