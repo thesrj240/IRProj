@@ -88,7 +88,7 @@ def co_hashtags(tweet_list,freq_table_hashtag):
 				break
 			
 		if not flag:
-			print hashtag1
+			#print hashtag1
 			del unsorted_dict[hashtag1]
 			vocab.remove(hashtag1)
 			for hashtag2 in vocab:

@@ -1,7 +1,7 @@
 import all_func as af
 import os
 import pickle
-filename = 'big_twist.txt'
+filename = 'all_tweets.txt'
 tweet_list = []
 print 'before functions'
 
@@ -18,7 +18,7 @@ for word in vocab:
 	numbered_vocab.append([word,count])
 	count +=1
 
-g = open('copickle','w')
+g = open('all_copickle2','w')
 pickle.dump([vocab, numbered_vocab, co_hash_matrix, tweet_list],g)
 g.close()
 

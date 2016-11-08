@@ -2,13 +2,13 @@ import pickle
 import os
 import hashtag_cluster_class as hcc
 import tweet_class as tc
-NUM_CLUSTER = 103
+NUM_CLUSTER = 200
 #Transfer
-g = open('copickle','r')
+g = open('all_copickle2','r')
 (vocab,numbered_vocab,co_hash_matrix,tweet_list) = pickle.load(g)
 #print(vocab)
 g.close()
-f = open('graph2','w')
+f = open('graph22','w')
 e=0
 for hashtag1 in vocab:
 	for hashtag2 in vocab:

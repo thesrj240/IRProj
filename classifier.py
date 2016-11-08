@@ -5,16 +5,18 @@ import tweet_class as tc
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 import all_func as af
-NUM_CLUSTER = 103
+NUM_CLUSTER = 200
 #Transfer
-def tokenizer_of_tweets(tweet_text):
+def tokenizer_of_tweets(tweet_text):	################change this function in both places for '@'
 	tweet_text = tweet_text.replace('\n',' ') 
 	temp_list = tweet_text.split(' ')
 	useful_list = []
 	for ele in temp_list:
 	    
-	    if len(ele)<2 or ele.startswith('https://') or ele.startswith('@') or ele.startswith('#'):
+	    if len(ele)<2 or ele.startswith('https://'):
 	        continue
+	    if ele.startswith('@') or ele.startswith('#'):
+	    	ele = ele[1:]
 	    useful_list.append(ele)
 	    
 	useful_text = " ".join(useful_list)
@@ -26,7 +28,7 @@ def tokenizer_of_tweets(tweet_text):
 	return real_tokens
 
 
-g = open('copickle','r')
+g = open('all_copickle','r')
 (vocab,numbered_vocab,co_hash_matrix,tweet_list) = pickle.load(g)
 #print(vocab)
 g.close()
@@ -75,6 +77,6 @@ for cluster in cluster_list:
 
 
 
-f = open('cluster_info_for_classification','w')
+f = open('cluster_info_for_classification2','w')
 pickle.dump([cluster_list,vocab_tweet,vectorizer],f)
 f.close()

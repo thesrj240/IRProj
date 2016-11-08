@@ -2,14 +2,16 @@ import pickle
 from sklearn.metrics.pairwise import cosine_similarity
 import re
 import all_func as af
-def tokenizer_of_tweets(tweet_text):
+def tokenizer_of_tweets(tweet_text):	################change this function in both places for '@'
 	tweet_text = tweet_text.replace('\n',' ') 
 	temp_list = tweet_text.split(' ')
 	useful_list = []
 	for ele in temp_list:
 	    
-	    if len(ele)<2 or ele.startswith('https://') or ele.startswith('@') or ele.startswith('#'):
+	    if len(ele)<2 or ele.startswith('https://'):
 	        continue
+	    if ele.startswith('@') or ele.startswith('#'):
+	    	ele = ele[1:]
 	    useful_list.append(ele)
 	    
 	useful_text = " ".join(useful_list)
@@ -23,8 +25,8 @@ def tokenizer_of_tweets(tweet_text):
 f = open('cluster_info_for_classification','r')
 (cluster_list,vocab_tweet,vectorizer) = pickle.load(f)
 f.close()
-tweet = 'Go to what could be a Cubs world Series clincher? Yes please. #GoCubsGo #FlyTheW https://t.co/OLPHalcaaV'
-print(tokenizer_of_tweets(tweet))
+tweet = 'finally done with the project could not be happier'
+#print(tokenizer_of_tweets(tweet))
 #print(vectorizer.get_feature_names())
 tweet_vector = vectorizer.transform([tweet])
 #print(tweet_vector)
@@ -32,7 +34,7 @@ tweet_vector = vectorizer.transform([tweet])
 centroid_list = []
 for cluster in cluster_list:
 	centroid_list.append(cluster.centroid)
-print(centroid_list[0])
+#print(centroid_list[0])
 cosine_sim = []
 for centroid in centroid_list:
 	cosine_sim.append(cosine_similarity(tweet_vector,centroid)[0][0])
